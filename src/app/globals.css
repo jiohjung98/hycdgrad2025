@@ -1,26 +1,87 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=NanumSquare+Neo:wght@400;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --max-width-desktop: 1634px;
+  --max-width-mobile: 706px;
+  --breakpoint-tablet: 768px;
+  --cyan-900: #164e63;
+  --red-500: #ef4444;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    font-family: 'NanumSquare_Neo', 'Pretendard', sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-responsive {
+    width: 100%;
+    max-width: var(--max-width-desktop);
+    margin: 0 auto;
+    padding-left: 4rem; 
+    padding-right: 4rem; 
+  }
+  
+  @media (max-width: 1200px) {
+    .container-responsive {
+      padding-left: 4rem; 
+      padding-right: 4rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container-responsive {
+      max-width: var(--max-width-mobile);
+      padding-left: 1rem; 
+      padding-right: 1rem; 
+    }
+  }
+  
+  /* 반응형 헤더 */
+  .desktop-nav {
+    display: flex;
+  }
+  
+  .mobile-menu {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none;
+    }
+    
+    .mobile-menu {
+      display: block;
+    }
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .nav-about {
+    color: var(--cyan-900);
+  }
+  
+  .nav-projects {
+    color: var(--red-500);
+  }
+  
+  .nav-designers {
+    color: var(--cyan-900);
+  }
 }
