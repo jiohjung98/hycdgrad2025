@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Pinyon_Script } from "next/font/google";
 import "./globals.css";
-import Header from "./header";
-import Footer from "./footer";
-import MouseBubbles from "./components/MouseBubbles";
+import ProtectedLayout from "./components/ProtectedLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,10 +34,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pinyonScript.variable} antialiased`}
       >
-        <MouseBubbles />
-        <Header />
-        {children}
-        <Footer />
+        <ProtectedLayout>
+          {children}
+        </ProtectedLayout>
       </body>
     </html>
   );
