@@ -15,7 +15,13 @@
 @layer base {
   body {
     font-family: 'NanumSquare_Neo', 'Pretendard', sans-serif;
+    /* cursor: none;  */
   }
+  
+  /* 모든 요소에서 기본 커서 숨기기 */
+  /* * {
+    cursor: none;
+  } */
 }
 
 @layer components {
