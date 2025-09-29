@@ -1,25 +1,29 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Pinyon_Script, Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "./header";
-import Footer from "./footer";
 import ProtectedLayout from "./components/ProtectedLayout";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
-// const pinyonScript = Pinyon_Script({
-//   variable: "--font-pinyon-script",
-//   weight: "400",
-//   subsets: ["latin"],
-// });
+const pinyonScript = Pinyon_Script({
+  variable: "--font-pinyon-script",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -39,7 +43,7 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
       </head>
-      <body className={`antialiased overflow-x-hidden`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${pinyonScript.variable} ${nunitoSans.variable} antialiased overflow-x-hidden`}>
         <ProtectedLayout>{children}</ProtectedLayout>
       </body>
     </html>

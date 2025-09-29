@@ -147,7 +147,7 @@ export default function DesignersPage() {
                 />
                 {/* 웹: 호버시 오버레이 */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex flex-col justify-end p-4">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-[5px]">
                     <div
                       className="text-white/90 font-bold"
                       style={{
@@ -171,7 +171,7 @@ export default function DesignersPage() {
                 </div>
                 {/* 모바일: 평소 그라디언트+이름 (이미지 안에) */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-2 md:hidden">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-[5px]">
                     <div
                       className="text-white/90 font-bold"
                       style={{

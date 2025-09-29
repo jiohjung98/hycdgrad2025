@@ -6,14 +6,12 @@ export default function Footer() {
   return (
     <footer className="w-full bg-zinc-800">
       <div className="container-responsive">
-        <div className="flex flex-row items-center justify-between py-16">
+        <div className="flex flex-row min-[450px]:flex-row flex-col items-start min-[450px]:items-center justify-between py-16 gap-6 min-[450px]:gap-0">
           <div className="flex flex-col gap-2">
-            {/* 데스크톱: 한 줄로 표시 */}
-            <p className="text-teal-50 text-sm font-semibold font-pretendard hidden md:block">
+            <p className="text-teal-50 text-sm font-semibold font-pretendard hidden min-[600px]:block">
               2025 한양대학교 ERICA 커뮤니케이션디자인학과 졸업전시
             </p>
-            {/* 모바일: ERICA / 커뮤니케이션디자인학과로 분리 */}
-            <div className="text-teal-50 text-sm font-semibold font-pretendard md:hidden">
+            <div className="text-teal-50 text-sm font-semibold font-pretendard min-[600px]:hidden">
               <p>2025 한양대학교 ERICA</p>
               <p>커뮤니케이션디자인학과 졸업전시</p>
             </div>
@@ -21,7 +19,7 @@ export default function Footer() {
               © 2025 HYCD, All Right Reserved.
             </p>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <Image
               src="/bottom_icon1.svg"
               alt="HYCD Icon"
@@ -29,20 +27,13 @@ export default function Footer() {
               height={36}
               className="w-9 h-9"
             />
-            {/* 한양대학교 로고와 로고타입을 하나로 취급하여 동일한 크기로 */}
-            <div className="flex items-center gap-2">
-              <Image
-                src="/bottom_icon2.svg"
-                alt="Hanyang University Seal"
-                width={36}
-                height={36}
-                className="w-9 h-9"
-              />
-              <div className="text-teal-50 text-sm font-semibold font-pretendard">
-                <div>한양대학교</div>
-                <div className="text-xs">HANYANG UNIVERSITY</div>
-              </div>
-            </div>
+            <Image
+              src="/bottom_icon2.svg"
+              alt="Hanyang University Seal"
+              width={154}
+              height={36}
+              className="w-full h-9"
+            />
           </div>
         </div>
       </div>

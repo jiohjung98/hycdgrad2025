@@ -49,7 +49,7 @@ export default function Header() {
               alt="HYCD Logo"
               width={54}
               height={45}
-              className="w-[54px] h-[45px]"
+              className="w-[28.8px] h-[24px] md:w-[54px] md:h-[45px]"
             />
           </div>
           <nav className="desktop-nav items-center">

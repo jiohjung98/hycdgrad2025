@@ -151,7 +151,7 @@ export default function ProjectsPage() {
               {/* 웹: 호버시 오버레이 */}
               <div className="absolute inset-0 bg-gradient-to-t from-gray-800/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex flex-col justify-end p-4">
                 <div
-                  className="text-white font-bold mb-1"
+                  className="text-white font-bold mb-[5px]"
                   style={{
                     fontSize: "clamp(16px, 2.5vw, 36px)",
                     fontFamily: "Pretendard",
@@ -160,7 +160,7 @@ export default function ProjectsPage() {
                 >
                   {project.title}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-[5px]">
                   <div
                     className="text-white/90 font-bold"
                     style={{
@@ -183,9 +183,9 @@ export default function ProjectsPage() {
                 </div>
               </div>
               {/* 모바일: 평소 그라디언트+제목+이름 (이미지 안에) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-800/80 to-transparent flex flex-col justify-end p-2 md:hidden">
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-800/80 to-transparent flex flex-col justify-end p-[18px] md:hidden">
                 <div
-                  className="text-white font-bold mb-1"
+                  className="text-white font-bold mb-[5px]"
                   style={{
                     fontSize: "clamp(16px, 4vw, 36px)",
                     fontFamily: "Pretendard",
@@ -194,7 +194,7 @@ export default function ProjectsPage() {
                 >
                   {project.title}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-[5px]">
                   <div
                     className="text-white/90 font-bold"
                     style={{

@@ -10,6 +10,10 @@ module.exports = {
       fontFamily: {
         'nanum': ['NanumSquare_Neo', 'sans-serif'],
         'pretendard': ['Pretendard', 'sans-serif'],
+        'geist-sans': ['var(--font-geist-sans)', 'sans-serif'],
+        'geist-mono': ['var(--font-geist-mono)', 'monospace'],
+        'pinyon': ['var(--font-pinyon-script)', 'cursive'],
+        'nunito-sans': ['var(--font-nunito-sans)', 'sans-serif'],
       },
       colors: {
         'cyan': {
