@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Header from '../header';
-import Footer from '../footer';
-import MouseBubbles from './MouseBubbles';
-import PasswordProtection from './PasswordProtection';
+import { useState, useEffect } from "react";
+import Header from "../header";
+import Footer from "../footer";
+// import MouseBubbles from './MouseBubbles';
+import PasswordProtection from "./PasswordProtection";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
@@ -16,8 +16,8 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 
   useEffect(() => {
     // 세션 스토리지에서 인증 상태 확인
-    const authStatus = sessionStorage.getItem('isAuthenticated');
-    if (authStatus === 'true') {
+    const authStatus = sessionStorage.getItem("isAuthenticated");
+    if (authStatus === "true") {
       setIsAuthenticated(true);
     }
     setIsLoading(false);
@@ -44,7 +44,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
   // 인증된 경우 원래 레이아웃 표시
   return (
     <>
-      <MouseBubbles />
+      {/* <MouseBubbles /> */}
       <Header />
       {children}
       <Footer />

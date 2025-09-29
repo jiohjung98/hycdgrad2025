@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=NanumSquare+Neo:wght@400;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=NanumSquare+Neo:wght@400;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,14 +14,22 @@
 
 @layer base {
   body {
-    font-family: 'NanumSquare_Neo', 'Pretendard', sans-serif;
+    font-family: "NanumSquare_Neo", "Pretendard", sans-serif;
     /* cursor: none;  */
+    overflow-x: hidden;
   }
-  
+
   /* 모든 요소에서 기본 커서 숨기기 */
   /* * {
     cursor: none;
   } */
+
+  /* 모바일 줌 아웃시 우측 여백 방지 */
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 }
 
 @layer components {
@@ -29,65 +37,115 @@
     width: 100%;
     max-width: var(--max-width-desktop);
     margin: 0 auto;
-    padding-left: 4rem; 
-    padding-right: 4rem; 
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
-  
+
   @media (max-width: 1200px) {
     .container-responsive {
-      padding-left: 4rem; 
+      padding-left: 4rem;
       padding-right: 4rem;
     }
   }
-  
-  @media (max-width: 768px) {
+
+  @media (max-width: 400px) {
     .container-responsive {
       max-width: var(--max-width-mobile);
-      padding-left: 1rem; 
-      padding-right: 1rem; 
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
-  
+
+  @media (min-width: 400px) and (max-width: 768px) {
+    .container-responsive {
+      max-width: var(--max-width-mobile);
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
   /* 반응형 헤더 */
   .desktop-nav {
     display: flex;
   }
-  
+
   .mobile-menu {
     display: none;
   }
-  
+
   @media (max-width: 768px) {
     .desktop-nav {
       display: none;
     }
-    
+
     .mobile-menu {
       display: block;
     }
   }
-  
+
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
   }
-  
-  @media (min-width: 768px) {
+
+  @media (min-width: 400px) {
     .projects-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
     }
   }
-  
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+  }
+
   .nav-about {
     color: var(--cyan-900);
   }
-  
+
   .nav-projects {
     color: var(--red-500);
   }
-  
+
   .nav-designers {
     color: var(--cyan-900);
+  }
+
+  /* 모바일 메뉴 애니메이션 */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.3s ease-out;
   }
 }
