@@ -153,34 +153,33 @@ export default function ProjectsPage() {
                 <div
                   className="text-white font-bold mb-1"
                   style={{
-                    fontSize: "36px",
+                    fontSize: "clamp(16px, 2.5vw, 36px)",
                     fontFamily: "Pretendard",
                     marginTop: "5px",
                   }}
                 >
                   {project.title}
                 </div>
-                <div
-                  className="text-white/90"
-                  style={{
-                    fontSize: "22px",
-                    fontFamily: "Pretendard",
-                    fontWeight: "bold",
-                    marginTop: "5px",
-                  }}
-                >
-                  심주형
-                </div>
-                <div
-                  className="text-white/90"
-                  style={{
-                    fontSize: "17px",
-                    fontFamily: "Pretendard",
-                    fontWeight: "300",
-                    marginTop: "5px",
-                  }}
-                >
-                  {project.author}
+                <div className="flex items-center gap-2">
+                  <div
+                    className="text-white/90 font-bold"
+                    style={{
+                      fontSize: "clamp(12px, 1.8vw, 22px)",
+                      fontFamily: "Pretendard",
+                    }}
+                  >
+                    심주형
+                  </div>
+                  <div
+                    className="text-white/90"
+                    style={{
+                      fontSize: "clamp(10px, 1.4vw, 18px)",
+                      fontFamily: "Pretendard",
+                      fontWeight: "300",
+                    }}
+                  >
+                    {project.author}
+                  </div>
                 </div>
               </div>
               {/* 모바일: 평소 그라디언트+제목+이름 (이미지 안에) */}
@@ -195,27 +194,26 @@ export default function ProjectsPage() {
                 >
                   {project.title}
                 </div>
-                <div
-                  className="text-white/90"
-                  style={{
-                    fontSize: "clamp(12px, 3vw, 22px)",
-                    fontFamily: "Pretendard",
-                    fontWeight: "bold",
-                    marginTop: "5px",
-                  }}
-                >
-                  심주형
-                </div>
-                <div
-                  className="text-white/90"
-                  style={{
-                    fontSize: "clamp(10px, 2.5vw, 17px)",
-                    fontFamily: "Pretendard",
-                    fontWeight: "300",
-                    marginTop: "5px",
-                  }}
-                >
-                  {project.author}
+                <div className="flex items-center gap-2">
+                  <div
+                    className="text-white/90 font-bold"
+                    style={{
+                      fontSize: "clamp(12px, 3vw, 22px)",
+                      fontFamily: "Pretendard",
+                    }}
+                  >
+                    심주형
+                  </div>
+                  <div
+                    className="text-white/90"
+                    style={{
+                      fontSize: "clamp(10px, 2.5vw, 17px)",
+                      fontFamily: "Pretendard",
+                      fontWeight: "300",
+                    }}
+                  >
+                    {project.author}
+                  </div>
                 </div>
               </div>
             </div>

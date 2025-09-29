@@ -145,29 +145,51 @@ export default function DesignersPage() {
                   height={267}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                {/* 하단부 그라디언트 오버레이 */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="w-full p-4 text-white">
-                    <div className="flex items-center gap-2 whitespace-nowrap">
-                      <div
-                        className="font-bold"
-                        style={{
-                          fontSize: "clamp(14px, 4vw, 22px)",
-                          fontFamily: "Pretendard",
-                        }}
-                      >
-                        {designer.name}
-                      </div>
-                      <div
-                        className="opacity-90"
-                        style={{
-                          fontSize: "clamp(12px, 3.5vw, 18px)",
-                          fontFamily: "Pretendard",
-                          fontWeight: "300",
-                        }}
-                      >
-                        {designer.nameEn}
-                      </div>
+                {/* 웹: 호버시 오버레이 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex flex-col justify-end p-4">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="text-white/90 font-bold"
+                      style={{
+                        fontSize: "clamp(12px, 1.8vw, 31px)",
+                        fontFamily: "Pretendard",
+                      }}
+                    >
+                      {designer.name}
+                    </div>
+                    <div
+                      className="text-white/90"
+                      style={{
+                        fontSize: "clamp(10px, 1.4vw, 25px)",
+                        fontFamily: "Pretendard",
+                        fontWeight: "300",
+                      }}
+                    >
+                      {designer.nameEn}
+                    </div>
+                  </div>
+                </div>
+                {/* 모바일: 평소 그라디언트+이름 (이미지 안에) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-2 md:hidden">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="text-white/90 font-bold"
+                      style={{
+                        fontSize: "clamp(12px, 4vw, 31px)",
+                        fontFamily: "Pretendard",
+                      }}
+                    >
+                      {designer.name}
+                    </div>
+                    <div
+                      className="text-white/90"
+                      style={{
+                        fontSize: "clamp(10px, 3.5vw, 25px)",
+                        fontFamily: "Pretendard",
+                        fontWeight: "300",
+                      }}
+                    >
+                      {designer.nameEn}
                     </div>
                   </div>
                 </div>
