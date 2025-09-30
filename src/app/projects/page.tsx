@@ -2,15 +2,10 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { projects } from "@/data/projects";
 
 const categories = ["All", "Brand", "UX/UI", "Editorial", "Package"];
-
-const projects = Array.from({ length: 12 }).map((_, i) => ({
-  id: i + 1,
-  title: "보글부글 웹",
-  author: "Shim Joo Hyung",
-  category: ["Brand", "UX/UI", "Editorial", "Package"][i % 4],
-}));
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -20,7 +15,9 @@ export default function ProjectsPage() {
   const filteredProjects =
     selectedCategory === "All"
       ? projects
-      : projects.filter((project) => project.category === selectedCategory);
+      : projects.filter(
+          (project) => project.category_label === selectedCategory
+        );
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
@@ -71,29 +68,41 @@ export default function ProjectsPage() {
                 <input
                   type="text"
                   placeholder="Search Project"
-                  className="flex-1 text-cyan-900 font-medium font-['Pretendard'] outline-none bg-transparent placeholder:text-cyan-900 placeholder:opacity-60"
+                  className="flex-1 text-cyan-900 text-2xl font-medium font-['Pretendard'] outline-none bg-transparent placeholder:text-cyan-900 mt-1"
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setIsSearchFocused(false)}
                   style={{
                     caretColor: "#164e63",
-                    fontSize: "18px",
                   }}
                 />
               </div>
-              <div className="hidden md:flex gap-[36px] relative z-30">
+              <div
+                className="hidden md:flex relative z-30 whitespace-nowrap overflow-hidden"
+                style={{ gap: "clamp(8px, 3vw, 48px)" }}
+              >
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className="focus:outline-none transition-all duration-200 relative z-30 cursor-pointer"
+                    className="focus:outline-none transition-all duration-200 relative z-30 cursor-pointer flex-shrink-0"
                   >
                     {selectedCategory === cat ? (
-                      <div className="text-center justify-start text-cyan-900 text-lg font-extrabold font-['Pretendard'] underline">
-                        {cat}
+                      <div className="border-b-2 border-cyan-900 flex justify-center items-center gap-2.5">
+                        <div
+                          className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap"
+                          style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
+                        >
+                          {cat}
+                        </div>
                       </div>
                     ) : (
-                      <div className="text-center justify-start text-cyan-900 text-lg font-medium font-['Pretendard']">
-                        {cat}
+                      <div className="bg-white flex justify-center items-center gap-2.5">
+                        <div
+                          className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap"
+                          style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
+                        >
+                          {cat}
+                        </div>
                       </div>
                     )}
                   </button>
@@ -104,30 +113,34 @@ export default function ProjectsPage() {
         </div>
       </div>
       <div className="container-responsive md:hidden py-[20px]">
-        <div className="w-full">
+        <div className="w-full overflow-x-auto">
           <div
-            className="flex gap-5 justify-start flex-wrap"
-            style={{ gap: "20px" }}
+            className="flex justify-start whitespace-nowrap"
+            style={{ gap: "clamp(12px, 4vw, 20px)" }}
           >
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className="focus:outline-none transition-all duration-200 cursor-pointer"
+                className="focus:outline-none transition-all duration-200 cursor-pointer flex-shrink-0"
               >
                 {selectedCategory === cat ? (
-                  <div
-                    className="text-center justify-start text-cyan-900 font-extrabold font-['Pretendard'] underline"
-                    style={{ fontSize: "18pt" }}
-                  >
-                    {cat}
+                  <div className="border-b-2 border-cyan-900 flex justify-center items-center gap-2.5">
+                    <div
+                      className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap"
+                      style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
+                    >
+                      {cat}
+                    </div>
                   </div>
                 ) : (
-                  <div
-                    className="text-center justify-start text-cyan-900 font-medium font-['Pretendard']"
-                    style={{ fontSize: "18pt" }}
-                  >
-                    {cat}
+                  <div className="bg-white flex justify-center items-center gap-2.5">
+                    <div
+                      className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap"
+                      style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
+                    >
+                      {cat}
+                    </div>
                   </div>
                 )}
               </button>
@@ -136,17 +149,21 @@ export default function ProjectsPage() {
         </div>
       </div>
       <div className="container-responsive bg-white/60 backdrop-blur-sm projects-grid pb-5 md:py-12">
-        {filteredProjects.map((project, idx) => (
-          <div
+        {filteredProjects.map((project) => (
+          <Link
             key={project.id}
+            href={`/projects/${project.id}`}
             className="bg-white/90 backdrop-blur-sm shadow-lg flex flex-col overflow-hidden border border-white/50 hover:shadow-xl transition-all duration-300 group"
           >
             {/* 썸네일 이미지 영역 */}
             <div className="relative">
-              <div className="aspect-[4/3] bg-gradient-to-br from-cyan-100 to-sky-100 flex items-center justify-center text-lg text-cyan-700 font-medium">
-                IMAGE
-                <br />
-                4:3
+              <div className="aspect-[4/3] relative bg-gradient-to-br from-cyan-100 to-sky-100">
+                <Image
+                  src={`/projects/${project.assets.folder}/${project.assets.thumb}`}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
               {/* 웹: 호버시 오버레이 */}
               <div className="absolute inset-0 bg-gradient-to-t from-gray-800/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex flex-col justify-end p-4">
@@ -168,7 +185,7 @@ export default function ProjectsPage() {
                       fontFamily: "Pretendard",
                     }}
                   >
-                    심주형
+                    {project.name}
                   </div>
                   <div
                     className="text-white/90"
@@ -178,7 +195,7 @@ export default function ProjectsPage() {
                       fontWeight: "300",
                     }}
                   >
-                    {project.author}
+                    {project.en_name}
                   </div>
                 </div>
               </div>
@@ -202,7 +219,7 @@ export default function ProjectsPage() {
                       fontFamily: "Pretendard",
                     }}
                   >
-                    심주형
+                    {project.name}
                   </div>
                   <div
                     className="text-white/90"
@@ -212,12 +229,12 @@ export default function ProjectsPage() {
                       fontWeight: "300",
                     }}
                   >
-                    {project.author}
+                    {project.en_name}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

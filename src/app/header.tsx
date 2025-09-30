@@ -66,7 +66,9 @@ export default function Header() {
               <Link
                 href="/projects"
                 className={`text-center justify-start text-lg font-bold font-['Pretendard'] tracking-tight hover:opacity-80 transition-opacity cursor-pointer ${
-                  pathname === "/projects" ? "text-red-500" : "text-cyan-900"
+                  pathname === "/projects" || pathname.startsWith("/projects/")
+                    ? "text-red-500"
+                    : "text-cyan-900"
                 }`}
                 style={{ fontSize: "18pt" }}
               >
@@ -122,7 +124,8 @@ export default function Header() {
                   <Link
                     href="/projects"
                     className={`font-medium font-['Pretendard'] tracking-tight hover:opacity-80 transition-opacity cursor-pointer ${
-                      pathname === "/projects"
+                      pathname === "/projects" ||
+                      pathname.startsWith("/projects/")
                         ? "text-red-500"
                         : "text-cyan-900"
                     }`}

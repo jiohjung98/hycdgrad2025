@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=NanumSquare+Neo:wght@400;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=NanumSquare+Neo:wght@400;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +10,7 @@
   --breakpoint-tablet: 768px;
   --cyan-900: #164e63;
   --red-500: #ef4444;
-  
+
   /* Font families */
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
@@ -19,7 +19,8 @@
 
 @layer base {
   body {
-    font-family: var(--font-geist-sans), "NanumSquare_Neo", "Pretendard", sans-serif;
+    font-family: var(--font-geist-sans), "NanumSquare_Neo", "Pretendard",
+      sans-serif;
     /* cursor: none;  */
     overflow-x: hidden;
   }
