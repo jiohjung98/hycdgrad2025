@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Header from "../header";
 import Footer from "../footer";
-// import MouseBubbles from './MouseBubbles';
+import MouseBubbles from './MouseBubbles';
 import PasswordProtection from "./PasswordProtection";
 
 interface ProtectedLayoutProps {
@@ -15,9 +15,6 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
-
-  // landing 페이지는 헤더/푸터 없이 독립적으로 표시
-  const isLandingPage = pathname === "/landing";
 
   useEffect(() => {
     // 세션 스토리지에서 인증 상태 확인
@@ -32,11 +29,6 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
     setIsAuthenticated(true);
   };
 
-  // landing 페이지는 레이아웃 없이 바로 렌더링
-  if (isLandingPage) {
-    return <>{children}</>;
-  }
-
   // 로딩 중일 때는 아무것도 표시하지 않음
   if (isLoading) {
     return (
@@ -46,9 +38,14 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
     );
   }
 
-  // 인증되지 않은 경우 비밀번호 입력 화면 표시
-  if (!isAuthenticated) {
-    return <PasswordProtection onAuthenticated={handleAuthenticated} />;
+  // 인증되지 않은 경우 비밀번호 입력 화면 표시 (개발용으로 임시 비활성화)
+  // if (!isAuthenticated) {
+  //   return <PasswordProtection onAuthenticated={handleAuthenticated} />;
+  // }
+
+  // 랜딩페이지인 경우 헤더/푸터 없이 컨텐츠만 표시
+  if (pathname === "/commingsoon") {
+    return <>{children}</>;
   }
 
   // 인증된 경우 원래 레이아웃 표시

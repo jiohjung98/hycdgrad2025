@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interactive Background</title>
+<meta name="description" content="p5.js reactive background" />
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Pretendard', sans-serif;
+    overflow-x: hidden;
+    background-color: #000;
+  }
+
+  /* p5.js 캔버스 */
+  #bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  /* Coming Soon 텍스트 */
+  .coming-soon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    z-index: 10;
+    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+  }
+
+  /* Footer */
+  .footer {
+    position: fixed;
+    bottom: 40px; /* 하단에서 40px 위 */
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    color: #ccf3f1;
+    padding: 0rem 1rem;
+    box-sizing: border-box;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-text div {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(204, 243, 241, 0.9);
+  }
+
+  .footer-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .icon {
+    display: block;
+    height: auto;
+  }
+
+  .icon1 { width: 36px; height: 36px; }
+  .icon2 { width: 154px; height: 36px; }
+
+  @media (min-width: 600px) {
+    .footer-container {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>
+</head>
+<body>
+  <div id="bg"></div>
+  <script src="./art2.js"></script>
+
+  <!-- Coming Soon 텍스트 -->
+  <div class="coming-soon" id="comingSoon">Coming Soon at 10/22</div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-text">
+        <div>2025 한양대학교 ERICA 커뮤니케이션디자인학과 졸업전시</div>
+        <div class="copyright">© 2025 HYCD, All Right Reserved.</div>
+      </div>
+      <div class="footer-icons">
+        <img src="/bottom_icon1.svg" alt="HYCD Icon" class="icon icon1" />
+        <img src="/bottom_icon2.svg" alt="Hanyang University Seal" class="icon icon2" />
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const coming = document.getElementById('comingSoon');
+    const footer = document.querySelector('.footer');
+
+    function updateComingPosition() {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const footerHeight = 40;
+  const baseWidth = 1920;
+
+  // 푸터 기준 top 위치
+  const footerTop = windowHeight - footerHeight - coming.offsetHeight / 2;
+  let topPos;
+
+  if (windowWidth >= 1920) {
+    topPos = footerTop - 20; // 1920 이상일 때 조금 위로
+  } else {
+    const ratio = windowWidth / baseWidth;
+    topPos = Math.max(650, footerTop * ratio);
+  }
+  coming.style.top = `${topPos}px`;
+
+  // 글자 크기 변화 (44px -> 24px)
+  const fontSize = Math.max(24, 44 * Math.min(1, windowWidth / baseWidth));
+  coming.style.fontSize = `${fontSize}px`;
+  coming.style.lineHeight = `${fontSize * 1.32}px`;
+
+  // 색상 변화
+  if (windowWidth >= 1920) {
+    // 초기 상태: 흰색 고정
+    coming.style.color = '#EEEDDE';
+  } else {
+    const startColor = {r: 238, g: 237, b: 222};
+    const endColor = {r: 221, g: 71, b: 72};
+    const colorRatio = Math.min(1, topPos / 650);
+    const r = Math.round(startColor.r * (1 - colorRatio) + endColor.r * colorRatio);
+    const g = Math.round(startColor.g * (1 - colorRatio) + endColor.g * colorRatio);
+    const b = Math.round(startColor.b * (1 - colorRatio) + endColor.b * colorRatio);
+    coming.style.color = `rgb(${r},${g},${b})`;
+  }
+}
+
+
+
+    window.addEventListener('resize', updateComingPosition);
+    updateComingPosition();
+  </script>
+</body>
+</html>

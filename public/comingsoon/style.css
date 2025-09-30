@@ -1,46 +1,4 @@
 /* ===== Reset (필요 최소) ===== */
-* {
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-}
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-/* ===== Fullscreen Canvas Layer ===== */
-#bg {
-  position: fixed;
-  inset: 0; /* top/right/bottom/left: 0 */
-  overflow: hidden;
-  z-index: 0; /* 배경 레이어용 */
-}
-
-/* p5 캔버스가 retina에서 흐리지 않도록 */
-#bg > canvas {
-  display: block; /* 스크롤바 방지 */
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* (선택) 시스템 다크/라이트에 따른 안전 배경색 */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #0a0a0a;
-  }
-}
-@media (prefers-color-scheme: light) {
-  body {
-    background: #ffffff;
-  }
-}
-
-
-/* ===== Reset (필요 최소) ===== */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 html, body { margin: 0; padding: 0; }

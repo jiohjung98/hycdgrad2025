@@ -26,6 +26,7 @@ export default function Footer() {
               width={36}
               height={36}
               className="w-9 h-9"
+              style={{ width: "auto", height: "auto" }}
             />
             <Image
               src="/bottom_icon2.svg"
@@ -33,6 +34,7 @@ export default function Footer() {
               width={154}
               height={36}
               className="w-full h-9"
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
         </div>

@@ -9,15 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/p5": "^1.7.6",
     "next": "15.4.4",
-    "p5": "^2.0.4",
+    "p5": "^2.0.5",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
+    "@types/p5": "^1.7.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
