@@ -16,12 +16,21 @@ export default function AboutPage() {
           {/* Left side - Main text */}
           <div className="flex flex-col mb-8">
             <div
-              className="justify-start text-cyan-900 text-6xl sm:text-7xl md:text-8xl font-normal -mb-4"
-              style={{ fontFamily: "var(--font-pinyon-script)" }}
+              className="justify-start text-cyan-900 font-normal -mb-4"
+              style={{
+                fontFamily: "var(--font-pinyon-script)",
+                fontSize: "clamp(48px, 10vw, 96px)",
+              }}
             >
               About
             </div>
-            <div className="justify-start text-cyan-900 text-6xl sm:text-7xl md:text-8xl font-bold font-['Pretendard'] leading-[116.16px]">
+            <div
+              className="justify-start text-cyan-900 font-bold font-['Pretendard']"
+              style={{
+                fontSize: "clamp(48px, 10vw, 96px)",
+                lineHeight: "1.2",
+              }}
+            >
               Us
             </div>
           </div>

@@ -28,12 +28,21 @@ export default function ProjectsPage() {
         <div className="container-responsive relative z-10 h-full flex items-center justify-between">
           <div className="flex flex-col mb-8">
             <div
-              className="justify-start text-cyan-900 text-6xl sm:text-7xl md:text-8xl font-normal -mb-4"
-              style={{ fontFamily: "var(--font-pinyon-script)" }}
+              className="justify-start text-cyan-900 font-normal -mb-4"
+              style={{
+                fontFamily: "var(--font-pinyon-script)",
+                fontSize: "clamp(48px, 10vw, 96px)",
+              }}
             >
               Our
             </div>
-            <div className="justify-start text-cyan-900 text-6xl sm:text-7xl md:text-8xl font-bold font-['Pretendard'] leading-[116.16px]">
+            <div
+              className="justify-start text-cyan-900 font-bold font-['Pretendard']"
+              style={{
+                fontSize: "clamp(48px, 10vw, 96px)",
+                lineHeight: "1.2",
+              }}
+            >
               Projects
             </div>
           </div>
@@ -59,20 +68,24 @@ export default function ProjectsPage() {
           style={{ marginBottom: "25px" }}
         >
           <div className="w-full">
-            <div
-              className="w-full bg-white border border-cyan-800 flex items-center justify-between"
-              style={{ height: "50px", padding: "20px" }}
-            >
-              <div className="flex items-center gap-3 flex-1 relative z-20 mr-2">
-                <Image src="/Search.svg" alt="Search" width={20} height={20} />
+            <div className="w-full bg-white border border-cyan-800 flex items-center justify-between h-[40px] md:h-[50px] px-[15px] md:px-5">
+              <div className="flex items-center gap-2 md:gap-3 flex-1 relative z-20 mr-2">
+                <Image
+                  src="/Search.svg"
+                  alt="Search"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 md:w-5 md:h-5"
+                />
                 <input
                   type="text"
                   placeholder="Search Project"
-                  className="flex-1 text-cyan-900 text-2xl font-medium font-['Pretendard'] outline-none bg-transparent placeholder:text-cyan-900 mt-1"
+                  className="flex-1 text-cyan-900 font-medium font-['Pretendard'] outline-none bg-transparent placeholder:text-cyan-900 mt-1"
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setIsSearchFocused(false)}
                   style={{
                     caretColor: "#164e63",
+                    fontSize: "clamp(18px, 4vw, 24px)",
                   }}
                 />
               </div>
@@ -84,25 +97,21 @@ export default function ProjectsPage() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className="focus:outline-none transition-all duration-200 relative z-30 cursor-pointer flex-shrink-0"
+                    className="focus:outline-none transition-all duration-200 relative z-30 cursor-pointer flex-shrink-0 p-0 leading-none"
                   >
                     {selectedCategory === cat ? (
-                      <div className="border-b-2 border-cyan-900 flex justify-center items-center gap-2.5">
-                        <div
-                          className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap"
-                          style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
-                        >
-                          {cat}
-                        </div>
+                      <div
+                        className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap border-b-2 border-cyan-900 leading-none"
+                        style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
+                      >
+                        {cat}
                       </div>
                     ) : (
-                      <div className="bg-white flex justify-center items-center gap-2.5">
-                        <div
-                          className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap"
-                          style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
-                        >
-                          {cat}
-                        </div>
+                      <div
+                        className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap leading-none"
+                        style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
+                      >
+                        {cat}
                       </div>
                     )}
                   </button>
@@ -122,25 +131,21 @@ export default function ProjectsPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className="focus:outline-none transition-all duration-200 cursor-pointer flex-shrink-0"
+                className="focus:outline-none transition-all duration-200 cursor-pointer flex-shrink-0 p-0 leading-none"
               >
                 {selectedCategory === cat ? (
-                  <div className="border-b-2 border-cyan-900 flex justify-center items-center gap-2.5">
-                    <div
-                      className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap"
-                      style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
-                    >
-                      {cat}
-                    </div>
+                  <div
+                    className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap border-b-2 border-cyan-900 leading-none"
+                    style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
+                  >
+                    {cat}
                   </div>
                 ) : (
-                  <div className="bg-white flex justify-center items-center gap-2.5">
-                    <div
-                      className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap"
-                      style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
-                    >
-                      {cat}
-                    </div>
+                  <div
+                    className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap leading-none"
+                    style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
+                  >
+                    {cat}
                   </div>
                 )}
               </button>
@@ -148,7 +153,7 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
-      <div className="container-responsive bg-white/60 backdrop-blur-sm projects-grid pb-5 md:py-12">
+      <div className="container-responsive bg-white/60 backdrop-blur-sm projects-grid pb-5 md:py-[40px]">
         {filteredProjects.map((project) => (
           <Link
             key={project.id}
