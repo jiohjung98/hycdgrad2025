@@ -97,7 +97,7 @@ export default function ProjectsPage() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className="focus:outline-none transition-all duration-200 relative z-30 cursor-pointer flex-shrink-0 p-0 leading-none"
+                    className="focus:outline-none relative z-30 cursor-pointer flex-shrink-0 p-0 leading-none"
                   >
                     {selectedCategory === cat ? (
                       <div
@@ -122,7 +122,7 @@ export default function ProjectsPage() {
         </div>
       </div>
       <div className="container-responsive md:hidden py-[20px]">
-        <div className="w-full overflow-x-auto">
+        <div className="w-full overflow-x-auto border-none">
           <div
             className="flex justify-start whitespace-nowrap"
             style={{ gap: "clamp(12px, 4vw, 20px)" }}
@@ -131,7 +131,7 @@ export default function ProjectsPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className="focus:outline-none transition-all duration-200 cursor-pointer flex-shrink-0 p-0 leading-none"
+                className="focus:outline-none cursor-pointer flex-shrink-0 p-0 leading-none"
               >
                 {selectedCategory === cat ? (
                   <div
