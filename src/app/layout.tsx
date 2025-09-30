@@ -33,6 +33,9 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   title: "hycdgrad2025",
   description: "한양대학교 커뮤니케이션디자인학과 2025년도 졸업전시 웹사이트",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -47,8 +50,11 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
+        <link rel="icon" href="/logo.svg" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${pinyonScript.variable} ${nunitoSans.variable} antialiased overflow-x-hidden`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${pinyonScript.variable} ${nunitoSans.variable} antialiased overflow-x-hidden`}
+      >
         <ProtectedLayout>{children}</ProtectedLayout>
       </body>
     </html>
