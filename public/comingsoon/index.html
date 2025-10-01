@@ -1,169 +1,214 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Interactive Background</title>
-<meta name="description" content="p5.js reactive background" />
-<script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Pretendard', sans-serif;
-    overflow-x: hidden;
-    background-color: #000;
-  }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interactive Background</title>
+    <meta name="description" content="p5.js reactive background" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.3/lib/p5.min.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: "Pretendard", sans-serif;
+        overflow-x: hidden;
+        background-color: #000;
+      }
 
-  /* p5.js 캔버스 */
-  #bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
+      /* p5.js 캔버스 */
+      #bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
 
-  /* Coming Soon 텍스트 */
-  .coming-soon {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 500;
-    text-align: center;
-    z-index: 10;
-    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
-  }
+      /* Coming Soon 텍스트 */
+      .coming-soon {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Pretendard", sans-serif;
+        font-weight: 600;
+        text-align: center;
+        z-index: 10;
+        transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+      }
 
-  /* Footer */
-  .footer {
-    position: fixed;
-    bottom: 40px; /* 하단에서 40px 위 */
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    color: #ccf3f1;
-    padding: 0rem 1rem;
-    box-sizing: border-box;
-  }
+      /* Footer */
+      .footer {
+        position: fixed;
+        bottom: 40px; /* 하단에서 40px 위 */
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        color: #ccf3f1;
+        padding: 0rem 1rem;
+        box-sizing: border-box;
+      }
 
-  .footer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+      .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-  .footer-text div {
-    margin: 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: white;
-  }
+      .footer-text div {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #fdfbed;
+      }
 
-  .copyright {
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: rgba(204, 243, 241, 0.9);
-  }
+      .copyright {
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: rgba(204, 243, 241, 0.9);
+      }
 
-  .footer-icons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
+      .footer-icons {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
 
-  .icon {
-    display: block;
-    height: auto;
-  }
+      /* 모바일에서 footer 아이콘 숨기기 */
+      @media (max-width: 768px) {
+        .footer-icons {
+          display: none;
+        }
+      }
 
-  .icon1 { width: 36px; height: 36px; }
-  .icon2 { width: 154px; height: 36px; }
+      .icon {
+        display: block;
+        height: auto;
+      }
 
-  @media (min-width: 600px) {
-    .footer-container {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-</style>
-</head>
-<body>
-  <div id="bg"></div>
-  <script src="./art2.js"></script>
+      .icon1 {
+        width: 36px;
+        height: 36px;
+      }
+      .icon2 {
+        width: 154px;
+        height: 36px;
+      }
 
-  <!-- Coming Soon 텍스트 -->
-  <div class="coming-soon" id="comingSoon">Coming Soon at 10/22</div>
+      @media (min-width: 600px) {
+        .footer-container {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bg"></div>
+    <script src="./art2.js"></script>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-text">
-        <div>2025 한양대학교 ERICA 커뮤니케이션디자인학과 졸업전시</div>
-        <div class="copyright">© 2025 HYCD, All Right Reserved.</div>
+    <!-- Coming Soon 텍스트 -->
+    <div class="coming-soon" id="comingSoon">Coming Soon 10/22</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-text">
+          <div>2025 한양대학교 ERICA 커뮤니케이션디자인학과 졸업전시회</div>
+          <div class="copyright">© 2025 HYCD, All Right Reserved.</div>
+        </div>
+        <div class="footer-icons">
+          <img src="/bottom_icon1.svg" alt="HYCD Icon" class="icon icon1" />
+          <img
+            src="/bottom_icon2.svg"
+            alt="Hanyang University Seal"
+            class="icon icon2"
+          />
+        </div>
       </div>
-      <div class="footer-icons">
-        <img src="/bottom_icon1.svg" alt="HYCD Icon" class="icon icon1" />
-        <img src="/bottom_icon2.svg" alt="Hanyang University Seal" class="icon icon2" />
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script>
-    const coming = document.getElementById('comingSoon');
-    const footer = document.querySelector('.footer');
+    <script>
+      const coming = document.getElementById("comingSoon");
+      const footer = document.querySelector(".footer");
 
-    function updateComingPosition() {
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-  const footerHeight = 40;
-  const baseWidth = 1920;
+      function updateComingPosition() {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const baseWidth = 1920;
 
-  // 푸터 기준 top 위치
-  const footerTop = windowHeight - footerHeight - coming.offsetHeight / 2;
-  let topPos;
+        // footer의 실제 위치 계산 (bottom: 40px이므로)
+        const footerTop = windowHeight - 40; // footer의 top 위치
+        const footerHeight = footer.offsetHeight; // footer의 실제 높이
+        const footerTopEdge = footerTop - footerHeight; // footer의 상단 위치
 
-  if (windowWidth >= 1920) {
-    topPos = footerTop - 20; // 1920 이상일 때 조금 위로
-  } else {
-    const ratio = windowWidth / baseWidth;
-    topPos = Math.max(650, footerTop * ratio);
-  }
-  coming.style.top = `${topPos}px`;
+        let topPos;
 
-  // 글자 크기 변화 (44px -> 24px)
-  const fontSize = Math.max(24, 44 * Math.min(1, windowWidth / baseWidth));
-  coming.style.fontSize = `${fontSize}px`;
-  coming.style.lineHeight = `${fontSize * 1.32}px`;
+        if (windowWidth >= 1920) {
+          // 1920 이상일 때: footer 내부 텍스트/아이콘과 동일 선상에 위치
+          topPos = footerTopEdge;
+        } else {
+          // 화면이 작아질수록 점점 위로 올라감
+          const ratio = windowWidth / baseWidth;
 
-  // 색상 변화
-  if (windowWidth >= 1920) {
-    // 초기 상태: 흰색 고정
-    coming.style.color = '#EEEDDE';
-  } else {
-    const startColor = {r: 238, g: 237, b: 222};
-    const endColor = {r: 221, g: 71, b: 72};
-    const colorRatio = Math.min(1, topPos / 650);
-    const r = Math.round(startColor.r * (1 - colorRatio) + endColor.r * colorRatio);
-    const g = Math.round(startColor.g * (1 - colorRatio) + endColor.g * colorRatio);
-    const b = Math.round(startColor.b * (1 - colorRatio) + endColor.b * colorRatio);
-    coming.style.color = `rgb(${r},${g},${b})`;
-  }
-}
+          // 최대 올라갈 수 있는 높이: 화면 하단으로부터 30%
+          const maxAllowedTop = windowHeight * 0.6; // 하단으로부터 30% = 상단으로부터 70%
 
+          // 위치 범위 설정
+          const minTop = footerTopEdge; // 최소 위치 (footer와 같은 선상)
+          const maxTop = maxAllowedTop; // 최대 위치 (하단으로부터 30%)
 
+          // ratio가 1(1920px)일 때 minTop, ratio가 0(0px)일 때 maxTop
+          topPos = minTop + (maxTop - minTop) * (1 - ratio);
+        }
 
-    window.addEventListener('resize', updateComingPosition);
-    updateComingPosition();
-  </script>
-</body>
+        coming.style.top = `${topPos}px`;
+
+        // 글자 크기 변화 (44px -> 24px)
+        const fontSize = Math.max(
+          24,
+          44 * Math.min(1, windowWidth / baseWidth)
+        );
+        coming.style.fontSize = `${fontSize}px`;
+        coming.style.lineHeight = `${fontSize * 1.32}px`;
+
+        // 색상 변화
+        if (windowWidth >= 1920) {
+          // 1920 이상일 때: 흰색 고정
+          coming.style.color = "#EEEDDE";
+        } else {
+          // 위치에 따른 색상 변화 (위로 올라갈수록 빨간색)
+          const startColor = { r: 238, g: 237, b: 222 }; // #EEEDDE (흰색)
+          const endColor = { r: 221, g: 71, b: 72 }; // #DD4748 (빨간색)
+
+          // 위치에 따른 색상 변화 (footer에서 maxTop까지)
+          const minTop = footerTopEdge; // 최소 위치 (footer와 같은 선상)
+          const maxTop = windowHeight * 0.6; // 최대 위치 (하단으로부터 40%)
+          const colorRatio = Math.min(1, (topPos - minTop) / (maxTop - minTop)); // 0(footer) ~ 1(maxTop)
+
+          const r = Math.round(
+            startColor.r * (1 - colorRatio) + endColor.r * colorRatio
+          );
+          const g = Math.round(
+            startColor.g * (1 - colorRatio) + endColor.g * colorRatio
+          );
+          const b = Math.round(
+            startColor.b * (1 - colorRatio) + endColor.b * colorRatio
+          );
+          coming.style.color = `rgb(${r},${g},${b})`;
+        }
+      }
+
+      window.addEventListener("resize", updateComingPosition);
+      updateComingPosition();
+    </script>
+  </body>
 </html>
