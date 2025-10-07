@@ -26,7 +26,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
 
     // "/" 경로로 접속 시 무조건 /commingsoon으로 이동
     if (pathname === "/") {
-      router.replace("/commingsoon");
+      router.replace("/comingsoon");
     }
 
     setIsLoading(false);
@@ -45,7 +45,7 @@ export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
   }
 
   // /commingsoon은 인증 없이 바로 렌더링
-  if (pathname === "/commingsoon" || pathname === "/") {
+  if (pathname === "/comingsoon" || pathname === "/") {
     return <>{children}</>;
   }
 
