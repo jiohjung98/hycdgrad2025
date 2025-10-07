@@ -12,10 +12,9 @@
       body {
         margin: 0;
         padding: 0;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
-        min-height: calc(var(--min-vh, 1vh) * 100);
         font-family: "Pretendard", sans-serif;
         overflow: hidden;
         background-color: #000;
@@ -24,6 +23,9 @@
         left: 0;
         overscroll-behavior: none;
         -webkit-overflow-scrolling: touch;
+        touch-action: none;
+        max-width: 100vw;
+        max-height: 100vh;
       }
 
       /* p5.js 캔버스 */
@@ -51,14 +53,15 @@
       /* Footer */
       .footer {
         position: fixed;
-        bottom: 0; /* 화면 하단에 딱 붙이기 */
+        bottom: 30px; /* 하단에서 30px 위 */
         left: 0;
         width: 100%;
         z-index: 10;
         color: #ccf3f1;
-        padding: 30px 0; /* 상하 패딩으로 여백 만들기 */
+        padding: 0;
         box-sizing: border-box;
-        max-height: 20vh; /* 최대 높이 제한 */
+        max-height: calc(100vh - 30px);
+        max-height: calc(calc(var(--vh, 1vh) * 100) - 30px);
         overflow: hidden;
       }
 
@@ -194,6 +197,25 @@
         // Safari/Chrome에서 주소창 고려한 최소 높이 설정
         const minHeight = Math.min(window.innerHeight, window.screen.height);
         document.documentElement.style.setProperty('--min-vh', `${minHeight * 0.01}px`);
+        
+        // 푸터가 화면을 넘지 않도록 강제 조정
+        const footer = document.querySelector('.footer');
+        if (footer) {
+          const availableHeight = window.innerHeight - 30; // 30px 여백 제외
+          const footerContent = footer.querySelector('.footer-container');
+          
+          if (footerContent) {
+            // 푸터 콘텐츠가 사용 가능한 높이를 넘으면 스케일 다운
+            const contentHeight = footerContent.scrollHeight;
+            if (contentHeight > availableHeight) {
+              const scale = availableHeight / contentHeight;
+              footerContent.style.transform = `scale(${scale})`;
+              footerContent.style.transformOrigin = 'center bottom';
+            } else {
+              footerContent.style.transform = 'scale(1)';
+            }
+          }
+        }
       }
       
       // 초기 설정
@@ -216,8 +238,22 @@
         document.documentElement.scrollTop = 0;
       }
       
+      // 모든 스크롤 이벤트 차단
+      document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+      }, { passive: false });
+      
+      document.addEventListener('wheel', function(e) {
+        e.preventDefault();
+      }, { passive: false });
+      
+      document.addEventListener('scroll', function(e) {
+        e.preventDefault();
+        lockScroll();
+      }, { passive: false });
+      
       // 주기적으로 스크롤 위치 확인 및 고정
-      setInterval(lockScroll, 100);
+      setInterval(lockScroll, 50);
 
       const coming = document.getElementById("comingSoon");
       const footer = document.querySelector(".footer");

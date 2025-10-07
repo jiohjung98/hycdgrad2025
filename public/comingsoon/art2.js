@@ -116,10 +116,11 @@ function __ensureOverlay() {
     Object.assign(ov.style, {
       position: 'fixed',
       left: '0', top: '0',
-      width: '100vw', height: '100vh',
+      width: '100%', height: '100%',
       pointerEvents: 'none',
       zIndex: '10',
       contain: 'layout style size',
+      overflow: 'hidden',
     });
     document.body.appendChild(ov);
     DOMS.overlay = ov;
