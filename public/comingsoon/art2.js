@@ -620,14 +620,7 @@ function getViewportSize() {
   const w = Math.round(vv ? vv.width  : window.innerWidth);
   const h = Math.round(vv ? vv.height : window.innerHeight);
   
-  // 모바일에서 주소창을 고려한 정확한 높이 계산
-  const mobileHeight = Math.min(
-    window.innerHeight,
-    window.screen.height,
-    vv ? vv.height : window.innerHeight
-  );
-  
-  return { w, h: mobileHeight };
+  return { w, h };
 }
 function smoothstep(a, b, x) {
   const t = constrain((x - a) / Math.max(1e-6, (b - a)), 0, 1);
