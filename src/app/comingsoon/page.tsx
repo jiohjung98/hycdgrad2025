@@ -6,10 +6,15 @@ import Footer from "../footer";
 
 export default function ComingSoonPage() {
     return (
-      <div className="flex flex-col min-h-screen">
+      <div className="w-full h-screen overflow-hidden">
         <iframe
           src="/comingsoon/index.html"
-          style={{ flex: 1, width: "100%", border: "none" }}
+          style={{ 
+            width: "100%", 
+            height: "100dvh", 
+            border: "none",
+            display: "block"
+          }}
           title="Coming Soon"
         />
       </div>
