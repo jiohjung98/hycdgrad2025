@@ -59,7 +59,7 @@ export default function ProjectDetailPage({
   return (
     <div className="min-h-screen bg-white">
       {/* 뒤로가기 버튼 */}
-      <div className="container-responsive pt-[73.6px] md:pt-[100px]">
+      <div className="container-responsive pt-[29.7px] md:pt-[100px]">
         <Link
           href="/projects"
           className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -69,9 +69,16 @@ export default function ProjectDetailPage({
             alt="뒤로가기"
             width={24}
             height={24}
-            className="w-6 h-6"
+            className="w-[4.167px] h-[7.812px] md:w-6 md:h-6"
           />
-          <div className="justify-start text-cyan-950 text-2xl font-black font-['NanumSquare_Neo_OTF'] mt-1">
+          <div 
+            className="justify-start text-2xl font-black font-['NanumSquare_Neo_OTF'] mt-1"
+            style={{
+              fontSize: "clamp(12.5px, 3vw, 24px)",
+              color: "#084458",
+              lineHeight: "normal"
+            }}
+          >
             All Projects
           </div>
         </Link>
@@ -177,31 +184,68 @@ export default function ProjectDetailPage({
       {/* 모바일 레이아웃 */}
       <div className="md:hidden px-[20px]">
         {/* 타이틀과 서브타이틀 */}
-        <div className="flex flex-col gap-[14px] mb-8 mt-[57.5px]">
-          <div className="justify-start text-neutral-900 text-6xl font-bold font-['Pretendard']">
+        <div className="flex flex-col gap-[14px] mb-8 mt-[29.7px]">
+          <div 
+            className="justify-start text-neutral-900 font-bold font-['Pretendard']"
+            style={{
+              fontSize: "clamp(33.333px, 8vw, 96px)",
+              lineHeight: "normal",
+              letterSpacing: "-0.667px",
+              color: "#121212"
+            }}
+          >
             {project.title}
           </div>
-          <div className="justify-start text-neutral-900 text-2xl font-bold font-['Pretendard']">
+          <div 
+            className="justify-start text-neutral-900 font-bold font-['Pretendard']"
+            style={{
+              fontSize: "clamp(13.542px, 4vw, 48px)",
+              lineHeight: "normal",
+              letterSpacing: "-0.271px",
+              color: "#121212"
+            }}
+          >
             {project.subtitle}
           </div>
         </div>
 
-        {/* 유저 정보 카드 */}
-        <div className="self-stretch flex justify-between items-end gap-[88px]">
-          <div className="flex flex-col justify-start items-start gap-5 flex-1 min-w-0">
-            <div className="flex flex-col justify-start items-start gap-2.5">
-              <div className="flex justify-start items-center gap-3.5 flex-wrap">
-                <div className="justify-start text-neutral-900 text-2xl font-bold font-['Pretendard'] leading-loose">
-                  {project.name}
-                </div>
-                <div className="justify-start text-neutral-600 text-xl font-medium font-['Pretendard'] leading-loose">
-                  {project.email}
-                </div>
-              </div>
+        {/* 이름과 이메일 */}
+        <div className="flex flex-col justify-start items-start gap-2.5 mb-5">
+          <div className="flex justify-start items-center gap-3.5 flex-nowrap">
+            <div 
+              className="justify-start text-neutral-900 font-bold font-['Pretendard'] whitespace-nowrap"
+              style={{
+                fontSize: "clamp(18px, 4vw, 32px)",
+                lineHeight: "normal",
+                letterSpacing: "-0.36px"
+              }}
+            >
+              {project.name}
             </div>
-            <div className="text-justify justify-start text-neutral-900 text-xl font-normal font-['Pretendard'] leading-loose">
-              {project.description}
+            <div 
+              className="justify-start text-neutral-600 font-medium font-['Pretendard'] whitespace-nowrap"
+              style={{
+                fontSize: "clamp(14px, 3vw, 24px)",
+                lineHeight: "normal"
+              }}
+            >
+              {project.email}
             </div>
+          </div>
+        </div>
+
+        {/* Description과 링크 - 가로 배치 */}
+        <div className="flex items-end gap-4 mb-8">
+          <div 
+            className="text-justify text-neutral-900 font-normal font-['Pretendard'] flex-1"
+            style={{
+              fontSize: "clamp(11.458px, 3vw, 24px)",
+              lineHeight: "150%",
+              letterSpacing: "-0.286px",
+              color: "#121212"
+            }}
+          >
+            {project.description}
           </div>
           {normalizedLink && (
             <Link
@@ -215,16 +259,24 @@ export default function ProjectDetailPage({
                 alt="링크"
                 width={24}
                 height={24}
-                className="w-6 h-6"
+                className="w-[14.308px] h-[14.308px] md:w-6 md:h-6 flex-shrink-0"
               />
-              <div className="text-justify justify-start text-white text-lg font-bold font-['Pretendard'] leading-relaxed">
+              <div 
+                className="text-justify justify-start text-white font-bold font-['Pretendard']"
+                style={{
+                  fontSize: "clamp(9.375px, 2.5vw, 20px)",
+                  lineHeight: "150%",
+                  letterSpacing: "-0.234px",
+                  color: "#FFF"
+                }}
+              >
                 {project.linkname || "링크 제목"}
               </div>
             </Link>
           )}
         </div>
 
-        {/* 프로젝트 이미지들 - gap 없이 붙어서 */}
+        {/* 프로젝트 이미지들 */}
         <div className="space-y-0 -mx-6 my-8">
           {Array.from(
             { length: project.assets.image_count },
@@ -244,7 +296,7 @@ export default function ProjectDetailPage({
 
           {/* 유튜브 비디오 */}
           {youtubeId && (
-            <div className="relative w-full aspect-video bg-gray-100">
+            <div className="relative w-full aspect-video bg-gray-100 mx-[20px]">
               <iframe
                 src={`https://www.youtube.com/embed/${youtubeId}`}
                 title="YouTube video player"
