@@ -35,6 +35,8 @@ export const metadata: Metadata = {
   description: "2025년도 한양대학교 ERICA 디자인대학 커뮤니케이션디자인학과 졸업전시회",
   icons: {
     icon: "/favi.svg",
+    shortcut: "/favi.svg",
+    apple: "/favi.svg",
   },
 };
 
@@ -44,14 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
-        <link rel="icon" href="/logo.svg" />
-      </head>
+    <html lang="ko">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pinyonScript.variable} ${nunitoSans.variable} antialiased overflow-x-hidden`}
       >
