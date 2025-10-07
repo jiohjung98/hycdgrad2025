@@ -14,7 +14,7 @@
         width: 100%;
         height: 100%;
         font-family: "Pretendard", sans-serif;
-        overflow-x: hidden;
+        overflow: hidden;
         background-color: #000;
       }
 
@@ -43,7 +43,7 @@
       /* Footer */
       .footer {
         position: fixed;
-        bottom: 40px; /* 하단에서 40px 위 */
+        bottom: 30px; /* 하단에서 30px 위 */
         left: 0;
         width: 100%;
         z-index: 10;
@@ -54,38 +54,41 @@
 
       .footer-container {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 1.5rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 15.66px;
         max-width: 1200px;
         margin: 0 auto;
       }
 
       .footer-text div {
         margin: 0;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #fdfbed;
+        color: #FDFBED;
+        font-family: "Pretendard", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%; /* 19.6px */
+        leading-trim: both;
+        text-edge: cap;
       }
 
       .copyright {
-        font-size: 0.75rem;
-        font-weight: 400;
-        color: rgba(204, 243, 241, 0.9);
+        color: #FDFBED;
+        font-family: "Pretendard", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%; /* 19.6px */
+        leading-trim: both;
+        text-edge: cap;
       }
 
       .footer-icons {
         display: flex;
-        gap: 1rem;
         align-items: center;
-      }
-
-      /* 모바일에서 footer 아이콘 숨기기 */
-      @media (max-width: 768px) {
-        .footer-icons {
-          display: none;
-        }
+        gap: 15.66px;
       }
 
       .icon {
@@ -94,40 +97,80 @@
       }
 
       .icon1 {
-        width: 36px;
-        height: 36px;
+        width: 42.023px;
+        height: 40.978px;
+        flex-shrink: 0;
       }
       .icon2 {
-        width: 154px;
-        height: 36px;
+        width: 37.113px;
+        height: 37.113px;
+        flex-shrink: 0;
       }
 
-      @media (min-width: 600px) {
+      /* 모바일 스타일 (768px 이하) */
+      @media (max-width: 768px) {
         .footer-container {
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
+          gap: 12.22px; /* 아이콘과 텍스트 간격 */
+        }
+
+        .footer-icons {
+          gap: 10.49px; /* 아이콘들 간 간격 */
+        }
+
+        .footer-text div {
+          color: #FDFBED;
+          font-family: "Pretendard", sans-serif;
+          font-size: 10px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 140%; /* 14px */
+          leading-trim: both;
+          text-edge: cap;
+        }
+
+        .copyright {
+          color: #FDFBED;
+          font-family: "Pretendard", sans-serif;
+          font-size: 10px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 140%; /* 14px */
+          leading-trim: both;
+          text-edge: cap;
+        }
+
+        .icon1 {
+          width: 28.143px;
+          height: 27.447px;
+          flex-shrink: 0;
+        }
+
+        .icon2 {
+          width: 26.3px;
+          height: 26.3px;
+          flex-shrink: 0;
         }
       }
+
     </style>
   </head>
   <body>
     <div id="bg"></div>
     <script src="./art2.js"></script>
-    <div class="coming-soon" id="comingSoon">Coming Soon 10/22</div>
+    <!-- <div class="coming-soon" id="comingSoon">Coming Soon 10/22</div> -->
     <footer class="footer">
       <div class="footer-container">
-        <div class="footer-text">
-          <div>2025 한양대학교 ERICA 커뮤니케이션디자인학과 졸업전시회</div>
-          <div class="copyright">© 2025 HYCD, All Right Reserved.</div>
-        </div>
         <div class="footer-icons">
-          <img src="/bottom_icon1.svg" alt="HYCD Icon" class="icon icon1" />
+          <img src="/landing_footericon1.svg" alt="HYCD Icon" class="icon icon1" />
           <img
-            src="/bottom_icon2.svg"
+            src="/landing_footericon2.svg"
             alt="Hanyang University Seal"
             class="icon icon2"
           />
+        </div>
+        <div class="footer-text">
+          <div>2025 한양대학교 ERICA 디자인대학</div>
+          <div class="copyright">커뮤니케이션디자인학과 졸업전시회</div>
         </div>
       </div>
     </footer>
