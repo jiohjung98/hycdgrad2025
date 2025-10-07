@@ -57,8 +57,6 @@
         color: #ccf3f1;
         padding: 0;
         box-sizing: border-box;
-        max-height: calc(100dvh - 30px);
-        overflow: hidden;
       }
 
       .footer-container {
@@ -191,6 +189,23 @@
         function setViewportHeight() {
           const vh = window.innerHeight * 0.01;
           document.documentElement.style.setProperty('--vh', `${vh}px`);
+          
+          // 푸터가 화면을 넘지 않도록 조정
+          const footer = document.querySelector('.footer');
+          if (footer) {
+            const footerRect = footer.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const footerBottom = footerRect.bottom;
+            
+            // 푸터가 화면을 넘으면 스케일 다운
+            if (footerBottom > viewportHeight) {
+              const scale = (viewportHeight - 30) / footerRect.height;
+              footer.style.transform = `scale(${Math.max(0.5, scale)})`;
+              footer.style.transformOrigin = 'center bottom';
+            } else {
+              footer.style.transform = 'scale(1)';
+            }
+          }
         }
         
         setViewportHeight();
