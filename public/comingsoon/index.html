@@ -14,7 +14,7 @@
         padding: 0;
         width: 100%;
         height: 100vh;
-        height: 100dvh; /* 동적 뷰포트 높이 */
+        height: calc(var(--vh, 1vh) * 100);
         font-family: "Pretendard", sans-serif;
         overflow: hidden;
         background-color: #000;
@@ -55,8 +55,7 @@
         color: #ccf3f1;
         padding: 0;
         box-sizing: border-box;
-        max-height: calc(100vh - 30px);
-        max-height: calc(100dvh - 30px);
+        max-height: calc(calc(var(--vh, 1vh) * 100) - 30px);
       }
 
       .footer-container {
@@ -183,16 +182,6 @@
     </footer>
 
     <script>
-      // 모바일 스크롤 완전 차단
-      document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-      }, { passive: false });
-      
-      document.addEventListener('scroll', function(e) {
-        e.preventDefault();
-        window.scrollTo(0, 0);
-      }, { passive: false });
-      
       // 뷰포트 높이 강제 설정
       function setViewportHeight() {
         const vh = window.innerHeight * 0.01;
