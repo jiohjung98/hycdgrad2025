@@ -1,15 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { projects } from "@/data/projects";
 
-const categories = ["All", "Brand", "UX/UI", "Editorial", "Package"];
+const categories = ["All", "Brand", "UX/UI", "Editorial", "Package", "Character / Illustration"];
 
 export default function ProjectsPage() {
+  const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [, setIsSearchFocused] = useState(false);
+
+  // URL 쿼리 파라미터에서 카테고리 읽기
+  useEffect(() => {
+    const category = searchParams.get('category');
+    if (category && categories.includes(category)) {
+      setSelectedCategory(category);
+    }
+  }, [searchParams]);
 
   // 필터링된 프로젝트 목록
   const filteredProjects =
@@ -85,13 +95,13 @@ export default function ProjectsPage() {
                   onBlur={() => setIsSearchFocused(false)}
                   style={{
                     caretColor: "#164e63",
-                    fontSize: "clamp(18px, 4vw, 24px)",
+                    fontSize: "clamp(15px, 2.5vw, 20px)",
                   }}
                 />
               </div>
               <div
-                className="hidden md:flex relative z-30 whitespace-nowrap overflow-hidden"
-                style={{ gap: "clamp(8px, 3vw, 48px)" }}
+                className="hidden md:flex relative z-30 whitespace-nowrap overflow-visible mt-1"
+                style={{ gap: "clamp(4px, 1.5vw, 48px)" }}
               >
                 {categories.map((cat) => (
                   <button
@@ -102,14 +112,14 @@ export default function ProjectsPage() {
                     {selectedCategory === cat ? (
                       <div
                         className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap border-b-2 border-cyan-900 leading-none"
-                        style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
+                        style={{ fontSize: "clamp(14px, 2vw, 18px)" }}
                       >
                         {cat}
                       </div>
                     ) : (
                       <div
                         className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap leading-none"
-                        style={{ fontSize: "clamp(14px, 2vw, 24px)" }}
+                        style={{ fontSize: "clamp(14px, 2vw, 18px)" }}
                       >
                         {cat}
                       </div>
@@ -118,38 +128,6 @@ export default function ProjectsPage() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="container-responsive md:hidden py-[20px]">
-        <div className="w-full overflow-x-auto border-none">
-          <div
-            className="flex justify-start whitespace-nowrap"
-            style={{ gap: "clamp(12px, 4vw, 20px)" }}
-          >
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className="focus:outline-none cursor-pointer flex-shrink-0 p-0 leading-none"
-              >
-                {selectedCategory === cat ? (
-                  <div
-                    className="text-center justify-start text-cyan-900 font-bold font-['Pretendard'] whitespace-nowrap border-b-2 border-cyan-900 leading-none"
-                    style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
-                  >
-                    {cat}
-                  </div>
-                ) : (
-                  <div
-                    className="text-center justify-start text-cyan-900 font-medium font-['Pretendard'] whitespace-nowrap leading-none"
-                    style={{ fontSize: "clamp(16px, 4vw, 18pt)" }}
-                  >
-                    {cat}
-                  </div>
-                )}
-              </button>
-            ))}
           </div>
         </div>
       </div>

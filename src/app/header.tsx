@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
+const categories = ["All", "Brand", "UX/UI", "Editorial", "Package", "Character / Illustration"];
+
 export default function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -104,11 +106,11 @@ export default function Header() {
           <>
             {/* 회색 오버레이 */}
             <div
-              className="fixed top-[70px] left-0 right-0 bottom-0 bg-black bg-opacity-30 z-40 md:hidden animate-fadeIn"
+              className="fixed top-[60px] left-0 right-0 bottom-0 bg-black bg-opacity-30 z-40 md:hidden animate-fadeIn"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             {/* 메뉴 패널 */}
-            <div className="fixed top-[70px] right-0 w-[60%] h-[calc(100vh-70px)] bg-white z-50 md:hidden animate-slideInRight">
+            <div className="fixed top-[60px] right-0 w-[60%] h-[calc(100vh-70px)] bg-white z-50 md:hidden animate-slideInRight">
               <div className="p-6">
                 <div className="flex flex-col space-y-6">
                   <Link
@@ -121,19 +123,37 @@ export default function Header() {
                   >
                     About
                   </Link>
-                  <Link
-                    href="/projects"
-                    className={`font-medium font-['Pretendard'] tracking-tight hover:opacity-80 transition-opacity cursor-pointer ${
-                      pathname === "/projects" ||
-                      pathname.startsWith("/projects/")
-                        ? "text-red-500"
-                        : "text-cyan-900"
-                    }`}
-                    style={{ fontSize: "18pt" }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Projects
-                  </Link>
+                  <div>
+                    <Link
+                      href="/projects"
+                      className={`font-medium font-['Pretendard'] tracking-tight hover:opacity-80 transition-opacity cursor-pointer ${
+                        pathname === "/projects" ||
+                        pathname.startsWith("/projects/")
+                          ? "text-red-500"
+                          : "text-cyan-900"
+                      }`}
+                      style={{ fontSize: "18pt" }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Projects
+                    </Link>
+                    {/* Projects 하위 카테고리들 */}
+                    <div className="ml-4 mt-2 flex flex-col gap-1">
+                      {categories.map((cat) => (
+                        <Link
+                          key={cat}
+                          href={`/projects${cat === "All" ? "" : `?category=${cat}`}`}
+                          className={`font-normal font-['Pretendard'] tracking-tight hover:opacity-80 transition-opacity cursor-pointer ${
+                            pathname.startsWith("/projects") ? "text-cyan-700" : "text-cyan-600"
+                          }`}
+                          style={{ fontSize: "14pt" }}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {cat}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                   <Link
                     href="/designers"
                     className={`font-medium font-['Pretendard'] tracking-tight hover:opacity-80 transition-opacity cursor-pointer ${
