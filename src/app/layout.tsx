@@ -33,11 +33,6 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   title: "hycdgrad2025",
   description: "2025년도 한양대학교 ERICA 디자인대학 커뮤니케이션디자인학과 졸업전시회",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({
