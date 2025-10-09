@@ -1,5 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css2?family=NanumSquare+Neo:wght@400;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=NanumSquare+Neo:wght@400;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,10 +20,16 @@
 
 @layer base {
   body {
-    font-family: var(--font-geist-sans), "NanumSquare_Neo", "Pretendard",
-      sans-serif;
+    font-family: "Pretendard Variable", "Pretendard", var(--font-geist-sans), "NanumSquare_Neo", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     /* cursor: none;  */
     overflow-x: hidden;
+    line-height: 1.2;
+  }
+
+  /* 전체 요소에 line-height와 letter-spacing 적용 */
+  * {
+    line-height: 1.2;
+    letter-spacing: -0.025em;
   }
 
   /* 모든 요소에서 기본 커서 숨기기 */
@@ -62,6 +69,19 @@
     }
   }
 
+  @media (max-width: 360px) {
+    .container-responsive {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    /* 360px 이하에서 패딩을 15px로 변경 */
+    .px-mobile-responsive {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+    }
+  }
+
   @media (min-width: 400px) and (max-width: 768px) {
     .container-responsive {
       max-width: var(--max-width-mobile);
@@ -91,15 +111,8 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-  }
-
-  @media (min-width: 400px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
   }
 
   @media (min-width: 768px) {

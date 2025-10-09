@@ -182,7 +182,7 @@ export default function ProjectDetailPage({
       </div>
 
       {/* 모바일 레이아웃 */}
-      <div className="md:hidden px-[20px]">
+      <div className="md:hidden px-[20px] px-mobile-responsive">
         {/* 타이틀과 서브타이틀 */}
         <div className="flex flex-col gap-[14px] mb-8 mt-[29.7px]">
           <div 
@@ -282,7 +282,7 @@ export default function ProjectDetailPage({
             { length: project.assets.image_count },
             (_, i) => i + 1
           ).map((num) => (
-            <div key={num} className="relative w-full px-[20px]">
+            <div key={num} className="relative w-full px-[20px] px-mobile-responsive">
               <Image
                 src={`/projects/${project.assets.folder}/${num}.${project.assets.image_ext}`}
                 alt={`${project.title} - ${num}`}

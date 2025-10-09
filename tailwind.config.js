@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'nanum': ['NanumSquare_Neo', 'sans-serif'],
-        'pretendard': ['Pretendard', 'sans-serif'],
+        'pretendard': ['Pretendard Variable', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'sans-serif'],
         'geist-sans': ['var(--font-geist-sans)', 'sans-serif'],
         'geist-mono': ['var(--font-geist-mono)', 'monospace'],
         'pinyon': ['var(--font-pinyon-script)', 'cursive'],
