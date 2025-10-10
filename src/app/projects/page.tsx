@@ -6,28 +6,55 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { projects } from "@/data/projects";
 
-const categories = ["All", "Brand", "UX/UI", "Editorial", "Package", "Character / Illustration"];
+const categories = [
+  "All",
+  "Brand",
+  "UX/UI",
+  "Editorial",
+  "Package",
+  "Character / Illustration",
+];
+
+// 영문 카테고리와 한글 카테고리 라벨 매핑
+const categoryMapping: { [key: string]: string } = {
+  Brand: "브랜드",
+  "UX/UI": "UI/UX",
+  Editorial: "편집",
+  Package: "패키지",
+  "Character / Illustration": "캐릭터 및 일러스트",
+};
 
 export default function ProjectsPage() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [, setIsSearchFocused] = useState(false);
 
   // URL 쿼리 파라미터에서 카테고리 읽기
   useEffect(() => {
-    const category = searchParams.get('category');
+    const category = searchParams.get("category");
     if (category && categories.includes(category)) {
       setSelectedCategory(category);
     }
   }, [searchParams]);
 
   // 필터링된 프로젝트 목록
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter(
-          (project) => project.category_label === selectedCategory
-        );
+  const filteredProjects = projects.filter((project) => {
+    // 카테고리 필터링
+    const categoryMatch =
+      selectedCategory === "All" ||
+      project.category_label === categoryMapping[selectedCategory];
+
+    // 검색 필터링 (학번, 작품명, 이름, 영문이름)
+    const searchMatch =
+      searchQuery === "" ||
+      project.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.en_name.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return categoryMatch && searchMatch;
+  });
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
@@ -90,6 +117,8 @@ export default function ProjectsPage() {
                 <input
                   type="text"
                   placeholder="Search Project"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   className="flex-1 text-cyan-900 font-medium font-['Pretendard'] outline-none bg-transparent placeholder:text-cyan-900 mt-1"
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setIsSearchFocused(false)}
